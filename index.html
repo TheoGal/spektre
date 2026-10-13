@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0d13">
+<title>Spektre</title>
+<link rel="icon" href="icons/favicon.ico" sizes="48x48">
+<link rel="icon" href="icons/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="icons/favicon-32x32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="icons/favicon-16x16.png" type="image/png" sizes="16x16">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="manifest" href="icons/site.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand"><h1>Spektre</h1><span>Spectrum analyzer</span></div>
+    <div class="sources" role="group" aria-label="Audio source">
+      <button id="bMic" type="button" aria-pressed="false"><i class="led"></i>Mic</button>
+      <button id="bShare" type="button" aria-pressed="false"><i class="led"></i>Tab / System</button>
+      <button id="bFile" type="button" aria-pressed="false"><i class="led"></i>File</button>
+      <button id="bStop" type="button" class="stop">Stop</button>
+      <input id="fileIn" type="file" accept="audio/*,video/*" hidden>
+    </div>
+  </header>
+
+  <section class="readouts" aria-live="off">
+    <div class="ro key"><small>Peak freq</small><output id="rFreq">—</output></div>
+    <div class="ro"><small>Note</small><output id="rNote">—</output></div>
+    <div class="ro key"><small>Peak level</small><output id="rLvl">—</output></div>
+    <div class="ro"><small>RMS</small><output id="rRms">—</output></div>
+    <div class="ro"><small>Sample peak</small><output id="rSpk">—</output></div>
+    <div class="ro"><small>Resolution</small><output id="rRes">—</output></div>
+  </section>
+
+  <main class="stage" id="stage">
+    <canvas id="spec" aria-label="Frequency spectrum, log frequency axis, dBFS level axis"></canvas>
+    <canvas id="sgram" hidden aria-label="Spectrogram"></canvas>
+  </main>
+
+  <div class="filebar" id="filebar" hidden></div>
+
+  <section class="controls" aria-label="Analyzer settings">
+    <div class="ctl"><label for="sFft">FFT size</label>
+      <select id="sFft"><option>2048</option><option>4096</option><option>8192</option><option>16384</option><option>32768</option></select></div>
+    <div class="ctl"><label for="sMode">Display</label>
+      <select id="sMode"><option value="line">Line</option><option value="3">1/3 octave</option><option value="6">1/6 octave</option><option value="12">1/12 octave</option></select></div>
+    <div class="ctl"><label for="sSlope">Slope</label>
+      <select id="sSlope"><option value="0">0 dB/oct</option><option value="3">3 dB/oct</option><option value="4.5">4.5 dB/oct</option><option value="6">6 dB/oct</option></select></div>
+    <div class="ctl"><label for="sPeak">Peak hold</label>
+      <select id="sPeak"><option value="off">Off</option><option value="decay">Decay</option><option value="hold">Max hold</option></select></div>
+    <div class="ctl"><label for="sFloor">Range</label>
+      <select id="sFloor"><option value="-60">0 to −60 dB</option><option value="-80">0 to −80 dB</option><option value="-100">0 to −100 dB</option><option value="-120">0 to −120 dB</option></select></div>
+    <div class="ctl"><label for="sChan">Channel</label>
+      <select id="sChan"><option value="mix">L+R mix</option><option value="L">Left</option><option value="R">Right</option></select></div>
+    <div class="ctl"><label for="sSmooth">Smoothing <span class="val" id="vSmooth"></span></label>
+      <input id="sSmooth" type="range" min="0" max="0.95" step="0.05"></div>
+    <div class="ctl"><label for="sSg">Spectrogram</label>
+      <select id="sSg"><option value="0">Off</option><option value="1">On</option></select></div>
+    <div class="ctl wide" id="devWrap" hidden><label for="sDev">Input device</label>
+      <select id="sDev"></select></div>
+    <div class="ctl"><label>&nbsp;</label><button id="bFreeze" type="button" aria-pressed="false"><i class="led"></i>Freeze</button></div>
+  </section>
+
+  <div class="status" id="status" role="status"></div>
+</div>
+
+<script src="app.js" defer></script>
+</body>
+</html>
