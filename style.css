@@ -41,6 +41,7 @@ button.stop{color:var(--muted)}
 .devpick{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;margin-left:-1px;
   background:var(--panel);border:1px solid var(--edge);border-radius:0 4px 4px 0;color:var(--muted);font-size:12px}
 .devpick:hover{border-color:#3a4558;color:var(--fg)}
+#bMic[aria-pressed="true"] + .devpick{border-color:var(--trace);color:var(--trace)}
 .devpick:focus-within{outline:2px solid var(--hold);outline-offset:2px}
 .devpick select{position:absolute;inset:0;width:100%;height:100%;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:16px}
 
