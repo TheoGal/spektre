@@ -12,6 +12,12 @@ Choose what to analyze from the top bar:
 - **Tab / System**: captures audio from another browser tab or the whole system using screen sharing. Works in desktop Chrome, Edge and Opera. Tick "Share audio" in the picker.
 - **File**: plays a local audio or video file through the analyzer.
 
+## Screenshots
+<p align="center">
+  <img src="desktop-screenshot.png" width="100%">
+  <img src="desktop-screenshot-spectrogram.png" width="100%">
+</p>
+
 ## Features
 
 - **Calibrated dBFS:** a 0 dBFS sine reads 0 dB.
