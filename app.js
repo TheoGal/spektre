@@ -148,18 +148,34 @@ async function startMic(deviceId) {
   } catch (e) { fail(e, 'mic'); }
 }
 
+// Tidy OS device names: drop USB ids like "(0bda:4014)" and put the distinguishing
+// part first, e.g. "Microphone (Focusrite USB Audio)" -> "Focusrite USB Audio · Microphone"
+function cleanLabel(l) {
+  l = l.replace(/^(Default|Communications)\s*-\s*/i, '').replace(/\s*\([0-9a-f]{4}:[0-9a-f]{4}\)\s*$/i, '').trim();
+  const m = l.match(/^([^()]+?)\s*\((.+)\)$/);
+  return m ? m[2] + ' · ' + m[1] : l;
+}
+
+let micDevId = null; // the device the user picked (null = browser default)
 async function listDevices(current) {
   try {
-    const devs = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audioinput');
-    const sel = $('#sDev');
+    const devs = (await navigator.mediaDevices.enumerateDevices())
+      .filter(d => d.kind === 'audioinput' && d.deviceId !== 'communications');
+    const sel = $('#sDev'), wrap = $('#devWrap');
     sel.innerHTML = '';
+    const want = micDevId || (devs.some(d => d.deviceId === 'default') ? 'default' : current);
     devs.forEach((d, i) => {
       const o = document.createElement('option');
-      o.value = d.deviceId; o.textContent = d.label || ('Input ' + (i + 1));
-      if (d.deviceId === current) o.selected = true;
+      const name = d.label ? cleanLabel(d.label) : 'Input ' + (i + 1);
+      o.value = d.deviceId;
+      o.textContent = d.deviceId === 'default' ? 'Default · ' + name : name;
+      if (d.deviceId === want) o.selected = true;
       sel.appendChild(o);
     });
-    $('#devWrap').hidden = devs.length < 2;
+    const real = devs.filter(d => d.deviceId !== 'default').length;
+    wrap.hidden = real < 2;
+    const cur = sel.options[sel.selectedIndex];
+    wrap.title = 'Input device: ' + (cur ? cur.textContent : 'default');
   } catch (e) {}
 }
 
@@ -512,9 +528,9 @@ $('#sFloor').onchange = e => { S.floor = +e.target.value; save(); buildGrid(); d
 $('#sChan').onchange = e => { S.chan = e.target.value; save(); if (src) route(); resetHold(); };
 $('#sSmooth').oninput = e => { S.smooth = +e.target.value; $('#vSmooth').textContent = S.smooth.toFixed(2); if (analyser) analyser.smoothingTimeConstant = S.smooth; save(); };
 $('#sSg').onchange = e => { setSg(e.target.value === '1'); save(); };
-$('#sDev').onchange = e => startMic(e.target.value);
+$('#sDev').onchange = e => { micDevId = e.target.value; startMic(micDevId); };
 
-btn.mic.onclick = () => startMic($('#devWrap').hidden ? undefined : $('#sDev').value);
+btn.mic.onclick = () => startMic(micDevId || undefined);
 btn.share.onclick = startShare;
 btn.file.onclick = () => $('#fileIn').click();
 $('#fileIn').onchange = e => { const f = e.target.files[0]; if (f) startFile(f); e.target.value = ''; };

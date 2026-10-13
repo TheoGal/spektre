@@ -21,7 +21,10 @@
   <header class="top">
     <div class="brand"><h1>Spektre</h1><span>Spectrum analyzer</span></div>
     <div class="sources" role="group" aria-label="Audio source">
-      <button id="bMic" type="button" aria-pressed="false"><i class="led"></i>Mic</button>
+      <span class="split">
+        <button id="bMic" type="button" aria-pressed="false"><i class="led"></i>Mic</button>
+        <span class="devpick" id="devWrap" hidden title="Input device"><span aria-hidden="true">▾</span><select id="sDev" aria-label="Input device"></select></span>
+      </span>
       <button id="bShare" type="button" aria-pressed="false"><i class="led"></i>Tab / System</button>
       <button id="bFile" type="button" aria-pressed="false"><i class="led"></i>File</button>
       <button id="bStop" type="button" class="stop">Stop</button>
@@ -62,8 +65,6 @@
       <input id="sSmooth" type="range" min="0" max="0.95" step="0.05"></div>
     <div class="ctl"><label for="sSg">Spectrogram</label>
       <select id="sSg"><option value="0">Off</option><option value="1">On</option></select></div>
-    <div class="ctl wide" id="devWrap" hidden><label for="sDev">Input device</label>
-      <select id="sDev"></select></div>
     <div class="ctl"><label>&nbsp;</label><button id="bFreeze" type="button" aria-pressed="false"><i class="led"></i>Freeze</button></div>
   </section>
 

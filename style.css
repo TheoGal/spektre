@@ -36,6 +36,13 @@ button .led{width:7px;height:7px;border-radius:50%;background:#2b3444;flex:none}
 button[aria-pressed="true"]{border-color:var(--trace);color:var(--trace)}
 button[aria-pressed="true"] .led{background:var(--trace);box-shadow:0 0 8px var(--trace)}
 button.stop{color:var(--muted)}
+.split{display:inline-flex}
+.split:has(.devpick:not([hidden])) #bMic{border-radius:4px 0 0 4px}
+.devpick{position:relative;display:inline-flex;align-items:center;justify-content:center;width:28px;margin-left:-1px;
+  background:var(--panel);border:1px solid var(--edge);border-radius:0 4px 4px 0;color:var(--muted);font-size:12px}
+.devpick:hover{border-color:#3a4558;color:var(--fg)}
+.devpick:focus-within{outline:2px solid var(--hold);outline-offset:2px}
+.devpick select{position:absolute;inset:0;width:100%;height:100%;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:16px}
 
 .readouts{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:1px;background:var(--edge);
   border:1px solid var(--edge);border-radius:6px;overflow:hidden}
