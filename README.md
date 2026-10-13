@@ -4,6 +4,12 @@ A browser-based real-time spectrum analyzer for desktop and mobile. Plain HTML, 
 
 **Live:** https://theogal.github.io/spektre/
 
+## Screenshots
+<p align="center">
+  <img src="desktop-screenshot.png" width="100%">
+  <img src="desktop-screenshot-spectrogram.png" width="100%">
+</p>
+
 ## Sources
 
 Choose what to analyze from the top bar:
@@ -11,12 +17,6 @@ Choose what to analyze from the top bar:
 - **Mic**: any input device. The browser's echo cancellation, noise suppression and auto-gain are switched off, so the signal stays unprocessed.
 - **Tab / System**: captures audio from another browser tab or the whole system using screen sharing. Works in desktop Chrome, Edge and Opera. Tick "Share audio" in the picker.
 - **File**: plays a local audio or video file through the analyzer.
-
-## Screenshots
-<p align="center">
-  <img src="desktop-screenshot.png" width="100%">
-  <img src="desktop-screenshot-spectrogram.png" width="100%">
-</p>
 
 ## Features
 
@@ -45,3 +45,5 @@ The startup settings live in the `DEF` object at the top of `app.js`. Your last-
 
 Simply download the files and place them on your server. 
 Microphone and tab capture require HTTPS (or localhost).
+
+**disclaimer** Im into web developing the last 10 years but this app was 100% vibe-coded with Claude - I simply inspected the code afterwards.
