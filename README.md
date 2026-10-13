@@ -43,9 +43,7 @@ The startup settings live in the `DEF` object at the top of `app.js`. Your last-
 
 ## How to host it
 
-Simply ## How to host it
-
-[Download the latest release](https://github.com/TheoGal/spektre/releases/latest), unzip it and place the `spektre` folder on your server. 
+Simply [Download the latest release](https://github.com/TheoGal/spektre/releases/latest), unzip it and place the `spektre` folder on your server. 
 Microphone and tab capture require HTTPS (or localhost).
 
 **License** MIT - do whatever you like with it
