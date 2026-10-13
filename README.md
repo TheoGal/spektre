@@ -14,6 +14,9 @@ A browser-based real-time spectrum analyzer for desktop and mobile. Plain HTML, 
   <img src="desktop-screenshot-spectrogram.png" width="100%">
 </p>
 
+### disclaimer
+Im into web developing the last 10 years but this app was 100% vibe-coded with Claude - I simply inspected the code afterwards.
+
 ## Features
 
 - **Sources:** select to analyze signal from an input device, browser tab or whole system using screen sharing or load a local audio/video file.
@@ -34,7 +37,7 @@ Tilting the display by 4.5 dB per octave (default setting) makes a balanced mix 
 
 The slope changes only the plot. The peak level and cursor readouts always show the true, unsloped dBFS. Choose 0, 3, 4.5 or 6 dB/oct in the settings.
 
-## Defaults
+### Defaults
 
 The startup settings live in the `DEF` object at the top of `app.js`. Your last-used settings are saved in the browser and override them.
 
@@ -43,4 +46,4 @@ The startup settings live in the `DEF` object at the top of `app.js`. Your last-
 Simply download the files and place them on your server. 
 Microphone and tab capture require HTTPS (or localhost).
 
-**disclaimer:** Im into web developing the last 10 years but this app was 100% vibe-coded with Claude - I simply inspected the code afterwards.
+**License** MIT - do whatever you like with it
