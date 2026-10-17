@@ -8,6 +8,8 @@ A browser-based real-time spectrum analyzer for desktop and mobile. Plain HTML, 
 
 **Live:** https://theogal.github.io/spektre/
 
+**Looking for a plugin version?** https://github.com/TheoGal/spektre-vst
+
 ## Screenshots
 <p align="center">
   <img src="desktop-screenshot.png" width="100%">
